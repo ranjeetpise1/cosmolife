@@ -74,17 +74,7 @@ function Products() {
         name: "moon cream",
         description: "to serve body care from UV/moon rays",
       },
-      {
-          name: "moon cream",
-          description: "to serve body care from UV/moon rays",
-      }, {
-        name: "sun cream",
-        description: "to serve body care from UV/sun rays",
-      },
-      {
-        name: "moon cream",
-        description: "to serve body care from UV/moon rays",
-      },
+      
       
   ];
 

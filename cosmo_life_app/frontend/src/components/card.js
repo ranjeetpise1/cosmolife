@@ -3,7 +3,7 @@ import react from "react";
 const Card = (props) => {
   return (
     
-    <div class="col-sm-3   ">
+    <div class="col-sm-6   ">
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Special title treatment</h5>
