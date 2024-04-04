@@ -39,7 +39,8 @@ CREATE TABLE user_details
     user_role varchar(20) default "customer",
     active_status boolean default true,
     profile_photo varchar(512) default 'no_image',
-    created_time_stamp timestamp default CURRENT_TIMESTAMP
+    created_time_stamp timestamp default CURRENT_TIMESTAMP,
+    last_updated_time_stamp timestamp default CURRENT_TIMESTAMP
 );
 
 CREATE TABLE user_address
@@ -55,6 +56,7 @@ CREATE TABLE user_address
     user_id integer,
     status varchar(20) default 'profile',
     created_time_stamp timestamp default CURRENT_TIMESTAMP,
+    last_updated_time_stamp timestamp default CURRENT_TIMESTAMP,
     CONSTRAINT address_user_unique UNIQUE (country, state, district, city, area, postal_code, house_no, user_id, status),
     CONSTRAINT status_unique UNIQUE (user_id, status),
     foreign key (user_id) references user_details(user_id)
@@ -67,7 +69,9 @@ CREATE TABLE product_details
     product_description varchar(1024) not null,
     product_image varchar(512) default 'no-image',
     product_cost float(10,2) not null,
-    created_time_stamp timestamp default CURRENT_TIMESTAMP
+    created_time_stamp timestamp default CURRENT_TIMESTAMP,
+    last_updated_time_stamp timestamp default CURRENT_TIMESTAMP,
+    CONSTRAINT product_unique UNIQUE (product_name, product_description, product_cost)
 );
 
 CREATE TABLE cart
@@ -76,6 +80,8 @@ CREATE TABLE cart
     user_id integer,
     is_cart_confirmed boolean default false,
     created_time_stamp timestamp default CURRENT_TIMESTAMP,
+    last_updated_time_stamp timestamp default CURRENT_TIMESTAMP,
+    CONSTRAINT user_cart_unique UNIQUE (user_id, is_cart_confirmed),
     foreign key (user_id) references user_details(user_id)
 );
 
@@ -84,9 +90,11 @@ CREATE TABLE cart_details
     cart_product_id integer primary key auto_increment,
     cart_id integer,
     product_id integer,
-    no_of_items int(100) default 0,
+    quantity int(20) default 1,
+    no_of_items int(50) default 1,
     total_bill float(9,2) default 0,
     created_time_stamp timestamp default CURRENT_TIMESTAMP,
+    last_updated_time_stamp timestamp default CURRENT_TIMESTAMP,
     foreign key (product_id) references product_details(product_id),
     foreign key (cart_id) references cart(cart_id)
 );
@@ -99,6 +107,7 @@ CREATE TABLE bill_details
     total_bill float(9,2) default 0,
     bill_status boolean default false,
     created_time_stamp timestamp default CURRENT_TIMESTAMP,
+    last_updated_time_stamp timestamp default CURRENT_TIMESTAMP,
     foreign key (user_id) references user_details(user_id),
     foreign key (cart_id) references cart_details(cart_id)
 );
@@ -113,5 +122,12 @@ drop table product_details;
 drop table cart;
 drop table cart_details;
 drop table bill_details;
+
+truncate table user_details;
+truncate table user_address;
+truncate table product_details;
+truncate table cart;
+truncate table cart_details;
+truncate table bill_details;
 
 --#################################################################

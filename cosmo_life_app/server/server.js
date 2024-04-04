@@ -4,11 +4,14 @@ const cors = require("cors");
 const product_route = require("./src/routes/product");
 const reg_router = require("./src/routes/registration");
 const utils = require("./src/routes/utils");
+const cart_route = require("./src/routes/cart");
 
 app.use(express.json());
 app.use(cors("*"));
+
 app.use("/products", product_route);
 app.use("/registration", reg_router);
+app.use("/cart_service", cart_route);
 
 // This is for testing purpose
 app.post("/", (req, resp) => {

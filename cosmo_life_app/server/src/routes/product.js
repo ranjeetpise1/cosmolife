@@ -1,6 +1,6 @@
 const express = require("express");
 const db = require("../../dbconnection");
-const utils = require("../routes/utils");
+const utils = require("./utils");
 const product_route = express.Router();
 
 product_route.get("/get_products", (req, resp, next) => {

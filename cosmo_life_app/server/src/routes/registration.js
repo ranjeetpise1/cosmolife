@@ -1,7 +1,7 @@
 const express = require("express");
 const reg_router = express.Router();
 const db = require("../../dbconnection");
-const utils = require("../routes/utils");
+const utils = require("./utils");
 const nodemailer = require("nodemailer");
 require("dotenv").config();
 
@@ -93,7 +93,7 @@ reg_router.post("/signin", (req, resp, next) => {
           }
         });
 
-        resp.send(utils.create_result(error, result));
+        resp.send(utils.create_result(error, result[0]));
       } else {
         resp.status(400);
         resp.send("please check password again, something is wrong!");
