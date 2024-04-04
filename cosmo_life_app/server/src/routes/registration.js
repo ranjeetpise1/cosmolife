@@ -21,13 +21,16 @@ const transporter = nodemailer.createTransport({
 reg_router.post("/signup", (req, resp, next) => {
   const { first_name, last_name, email, password, mobile_no, user_role } =
     req.body;
-  const crypto_password = utils.encrypt(password);
+    console.log(req.body);
+  // const crypto_password = utils.encrypt(password);
+  // console.log(crypto_password);
   const connection = db.openConnection();
 
-  const statement = `insert into user_details(first_name, last_name, email, password, mobile_no, user_role ) values ('${first_name}', '${last_name}', '${email}', '${crypto_password}', '${mobile_no}', '${user_role}')`;
+  const statement = `insert into user_details(first_name, last_name, email, password, mobile_no, user_role ) values ('${first_name}', '${last_name}', '${email}', '${password}', '${mobile_no}', '${user_role}')`;
 
   connection.query(statement, (error, result) => {
     if (!error) {
+      console.log(result)
       const mailOptions = {
         from: process.env.EMAIL_USER,
         to: `${email}`,
@@ -52,6 +55,7 @@ reg_router.post("/signup", (req, resp, next) => {
       resp.send(utils.create_result(error, result));
     } else {
       connection.end();
+      console.log(error)
       resp.send(utils.create_error(error));
     }
   });
