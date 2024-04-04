@@ -5,14 +5,14 @@ function Navbar() {
     let login = false;
 
     return (
-        <div style={{marginTop:"50px"}}>
+        <div className="container" style={{marginTop:"50px"}}>
             <nav className="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-                <div className="container-fluid">
-                    <a className="navbar-brand" href="home.js">Home</a>
+                <div className="container">
+                    <a className="navbar-brand" href="home">Home</a>
                     <a className="navbar-brand" href="/products">Products</a>
-                    <a className="navbar-brand" href="/about.js">About Us</a>
-                    <a className="navbar-brand" href="/contact.js">Contact Us</a>
-                    <a className="navbar-brand" href="/feedback.js">Feedback</a>
+                    <a className="navbar-brand" href="/about">About Us</a>
+                    <a className="navbar-brand" href="/contact">Contact Us</a>
+                    <a className="navbar-brand" href="/feedback">Feedback</a>
                     { login? 
                         <div className="collapse navbar-collapse" id="navbarSupportedContent">
                             <form className="d-flex">
