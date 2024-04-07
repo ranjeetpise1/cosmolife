@@ -26,10 +26,10 @@ app.get("/", (req, resp) => {
   resp.send(utils.encrypt(name));
 });
 
-app.listen(4000, "0.0.0.0", (error) => {
+app.listen(4001, "0.0.0.0", (error) => {
   if (!error) {
-    console.log("Server running on port 4000");
+    console.log("Server running on port 4001");
   } else {
-    console.log("Fail to start server on port 4000");
+    console.log("Fail to start server on port 4001");
   }
 });

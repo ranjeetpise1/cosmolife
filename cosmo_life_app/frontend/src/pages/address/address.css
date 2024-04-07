@@ -1,0 +1,31 @@
+#wholepage{
+    background-image: linear-gradient(180deg, rgb(0, 0, 0), rgb(133, 125, 125));
+    margin-top: 550;
+}
+
+#fontcolor{
+    color: aliceblue;
+    font-family: 'Times New Roman';
+    font: 1em sans-serif;
+}
+
+#fontcolorH1{
+    color: aliceblue;
+    text-align: center;
+    font-family: 'Dancing Script', cursive;
+    font-weight: bold;
+}
+
+#link{
+    color: blue;
+}
+
+#form{
+    padding-left: 5rem;
+    padding-right: 5rem;
+}
+
+#timeline{
+    padding-left: 3rem;
+    padding-top: 5rem;
+}

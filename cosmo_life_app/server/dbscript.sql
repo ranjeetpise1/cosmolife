@@ -15,6 +15,8 @@ desc user_address;
 desc product_details;
 desc cart;
 desc cart_details;
+desc brand_details;
+desc category_details;
 desc bill_details;
 
 select * from user_details;
@@ -22,6 +24,8 @@ select * from user_address;
 select * from product_details;
 select * from cart;
 select * from cart_details;
+select * from brand_details;
+select * from category_details;
 select * from bill_details;
 
 --================================================================
@@ -62,16 +66,40 @@ CREATE TABLE user_address
     foreign key (user_id) references user_details(user_id)
 );
 
+CREATE TABLE brand_details
+(
+    brand_id integer primary key auto_increment,
+    brand_name varchar(512) not null,
+    brand_description varchar(1024) not null,
+    created_time_stamp timestamp default CURRENT_TIMESTAMP,
+    last_updated_time_stamp timestamp default CURRENT_TIMESTAMP,
+    CONSTRAINT brand_unique UNIQUE (brand_name)
+);
+
+CREATE TABLE category_details
+(
+    category_id integer primary key auto_increment,
+    brand_id integer,
+    category_name varchar(512) UNIQUE not null,
+    category_description varchar(1024) not null,
+    created_time_stamp timestamp default CURRENT_TIMESTAMP,
+    last_updated_time_stamp timestamp default CURRENT_TIMESTAMP,
+    CONSTRAINT category_unique UNIQUE (category_name),
+    foreign key (brand_id) references brand_details(brand_id)
+);
+
 CREATE TABLE product_details
 (
     product_id integer primary key auto_increment,
+    category_id integer,
     product_name varchar(512) UNIQUE not null,
     product_description varchar(1024) not null,
     product_image varchar(512) default 'no-image',
     product_cost float(10,2) not null,
     created_time_stamp timestamp default CURRENT_TIMESTAMP,
     last_updated_time_stamp timestamp default CURRENT_TIMESTAMP,
-    CONSTRAINT product_unique UNIQUE (product_name, product_description, product_cost)
+    CONSTRAINT product_unique UNIQUE (product_name, product_cost),
+    foreign key (category_id) references category_details(category_id)
 );
 
 CREATE TABLE cart
@@ -121,12 +149,16 @@ drop table user_address;
 drop table product_details;
 drop table cart;
 drop table cart_details;
+drop table brand_details;
+drop table category_details;
 drop table bill_details;
 
 truncate table user_details;
 truncate table user_address;
 truncate table product_details;
 truncate table cart;
+truncate table brand_details;
+truncate table category_details;
 truncate table cart_details;
 truncate table bill_details;
 

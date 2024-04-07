@@ -3,10 +3,11 @@ const db = require("../../dbconnection");
 const utils = require("./utils");
 const product_route = express.Router();
 
-product_route.get("/get_products", (req, resp, next) => {
+product_route.get("/get_products/:category_id", (req, resp, next) => {
+  const category_id = req.params.category_id;
   const connection = db.openConnection();
 
-  const statement = `select * from product_details`;
+  const statement = `select * from product_details where category_id = ${category_id}`;
 
   connection.query(statement, (error, result) => {
     connection.end();
@@ -14,11 +15,11 @@ product_route.get("/get_products", (req, resp, next) => {
   });
 });
 
-product_route.post("/add_products", (req, resp, next) => {
+product_route.post("/add_products/:category_id", (req, resp, next) => {
   const { product_name, product_description, product_cost } = req.body;
   const connection = db.openConnection();
 
-  const statement = `insert into product_details(product_name, product_description, product_cost) values ('${product_name}', '${product_description}', ${product_cost})`;
+  const statement = `insert into product_details(product_name, product_description, product_cost, category_id) values ('${product_name}', '${product_description}', ${product_cost}, '${category_id}')`;
 
   connection.query(statement, (error, result) => {
     connection.end();

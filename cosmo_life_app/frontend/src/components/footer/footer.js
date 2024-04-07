@@ -94,10 +94,22 @@ function Footer() {
                 <h6 className="footer-heading text-uppercase text-white fw-bold">
                   Social
                 </h6>
-                <ul className="list-inline my-4">
-                  <a href="#" class="fa fa-facebook"></a>
-                  <a href="#" class="fa fa-linkedin"></a>
-                  <a href="#" class="fa fa-instagram"></a>
+                <ul className="list-inline my-3">
+                  <a
+                    href="#"
+                    className="fa fa-facebook"
+                    style={{ margin: "5px" }}
+                  ></a>
+                  <a
+                    href="#"
+                    className="fa fa-linkedin"
+                    style={{ margin: "5px" }}
+                  ></a>
+                  <a
+                    href="#"
+                    className="fa fa-instagram"
+                    style={{ margin: "5px" }}
+                  ></a>
                 </ul>
               </div>
             </div>
@@ -107,7 +119,8 @@ function Footer() {
                   Contact Us
                 </h6>
                 <address className="mt-4 m-0 text-white mb-1">
-                  <i className="bi bi-pin-map fw-semibold"></i> Vishrambaugh, Sangli-416416
+                  <i className="bi bi-pin-map fw-semibold"></i> Vishrambaugh,
+                  Sangli-416416
                 </address>
                 <a
                   href="tel:+"
@@ -121,7 +134,6 @@ function Footer() {
                 >
                   <i className="bi bi-envelope"></i> ranjeetpise7660@gmail.com
                 </a>
-                
               </div>
             </div>
           </div>

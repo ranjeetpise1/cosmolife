@@ -130,4 +130,27 @@ cart_route.post("/remove_from_cart/:user_id/:product_id", (req, resp) => {
   }
 });
 
+cart_route.post("/remove_from_cart/:user_id/:product_id", (req, resp) => {
+  const { user_id, product_id } = req.params;
+  const { remove_quantity } = req.body;
+  if (req.headers.is_cart_created === "true") {
+    const connection = db.openConnection();
+
+    let statement = `
+    select cd.product_id, 
+    cd.quantity, 
+    cd.no_of_items, 
+    cd.total_bill, 
+    pd.product_cost 
+    from cart_details cd inner join product_details pd 
+    on cd.product_id = pd.product_id inner join cart c 
+    on cd.cart_id = c.cart_id 
+    where cd.product_id = ${product_id} 
+    and c.user_id = ${user_id} 
+    and c.is_cart_confirmed = false`;
+  } else {
+    resp.send("Cart is empty!!");
+  }
+});
+
 module.exports = cart_route;
