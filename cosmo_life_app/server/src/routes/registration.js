@@ -96,8 +96,11 @@ reg_router.post("/signin", (req, resp, next) => {
             console.log(info.messageId);
           }
         });
-
-        resp.send(utils.create_result(error, result[0]));
+        const data = {
+          result: result[0],
+          OTP,
+        };
+        resp.send(utils.create_result(error, data));
       } else {
         resp.status(400);
         resp.send("please check password again, something is wrong!");
