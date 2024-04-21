@@ -4,8 +4,8 @@ import "./footer.css";
 function Footer() {
   return (
     <div>
-      <footer className="footer bg-dark">
-        <div className="container">
+      <footer className="footer bg-dark container">
+        <div>
           <div className="row">
             <div className="col-sm-6 col-md-4 mt-4 col-lg-3 text-center text-sm-start">
               <div className="information">
@@ -13,22 +13,6 @@ function Footer() {
                   Information
                 </h6>
                 <ul className="list-unstyled footer-link mt-4">
-                  <li className="mb-1">
-                    <a
-                      href=""
-                      className="text-white text-decoration-none fw-semibold"
-                    >
-                      Events
-                    </a>
-                  </li>
-                  <li className="mb-1">
-                    <a
-                      href=""
-                      className="text-white text-decoration-none fw-semibold"
-                    >
-                      Our Team
-                    </a>
-                  </li>
                   <li className="mb-1">
                     <a
                       href=""
@@ -67,23 +51,7 @@ function Footer() {
                       href=""
                       className="text-white text-decoration-none fw-semibold"
                     >
-                      Website Tutorials
-                    </a>
-                  </li>
-                  <li className="mb-1">
-                    <a
-                      href=""
-                      className="text-white text-decoration-none fw-semibold"
-                    >
                       Third Party
-                    </a>
-                  </li>
-                  <li className="">
-                    <a
-                      href=""
-                      className="text-white text-decoration-none fw-semibold"
-                    >
-                      Video Lectures
                     </a>
                   </li>
                 </ul>

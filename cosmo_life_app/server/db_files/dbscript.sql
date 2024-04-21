@@ -58,11 +58,11 @@ CREATE TABLE user_address
     house_no int(50),
     postal_code int(10),
     user_id integer,
-    status varchar(20) default 'profile',
+    add_title varchar(20) default 'profile',
     created_time_stamp timestamp default CURRENT_TIMESTAMP,
     last_updated_time_stamp timestamp default CURRENT_TIMESTAMP,
-    CONSTRAINT address_user_unique UNIQUE (country, state, district, city, area, postal_code, house_no, user_id, status),
-    CONSTRAINT status_unique UNIQUE (user_id, status),
+    CONSTRAINT address_user_unique UNIQUE (country, state, district, city, area, postal_code, house_no, user_id, add_title),
+    CONSTRAINT add_title_unique UNIQUE (user_id, add_title),
     foreign key (user_id) references user_details(user_id)
 );
 
@@ -71,6 +71,7 @@ CREATE TABLE brand_details
     brand_id integer primary key auto_increment,
     brand_name varchar(512) not null,
     brand_description varchar(1024) not null,
+    brand_logo varchar(512) default 'no_image',
     created_time_stamp timestamp default CURRENT_TIMESTAMP,
     last_updated_time_stamp timestamp default CURRENT_TIMESTAMP,
     CONSTRAINT brand_unique UNIQUE (brand_name)
@@ -80,11 +81,11 @@ CREATE TABLE category_details
 (
     category_id integer primary key auto_increment,
     brand_id integer,
-    category_name varchar(512) UNIQUE not null,
+    category_name varchar(512) not null,
     category_description varchar(1024) not null,
     created_time_stamp timestamp default CURRENT_TIMESTAMP,
     last_updated_time_stamp timestamp default CURRENT_TIMESTAMP,
-    CONSTRAINT category_unique UNIQUE (category_name),
+    CONSTRAINT category_unique UNIQUE (category_name, brand_id),
     foreign key (brand_id) references brand_details(brand_id)
 );
 
@@ -92,13 +93,13 @@ CREATE TABLE product_details
 (
     product_id integer primary key auto_increment,
     category_id integer,
-    product_name varchar(512) UNIQUE not null,
+    product_name varchar(512) not null,
     product_description varchar(1024) not null,
     product_image varchar(512) default 'no-image',
     product_cost float(10,2) not null,
     created_time_stamp timestamp default CURRENT_TIMESTAMP,
     last_updated_time_stamp timestamp default CURRENT_TIMESTAMP,
-    CONSTRAINT product_unique UNIQUE (product_name, product_cost),
+    CONSTRAINT product_unique UNIQUE (product_name, product_cost, category_id),
     foreign key (category_id) references category_details(category_id)
 );
 

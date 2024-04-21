@@ -1,6 +1,6 @@
 const express = require("express");
 const address_router = express.Router();
-const db = require("../../dbconnection");
+const db = require("../../db_files/dbconnection");
 const utils = require("./utils");
 
 address_router.get("usr_get_addr/:user_id", (req, resp) => {

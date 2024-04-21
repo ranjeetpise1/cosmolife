@@ -66,14 +66,14 @@ const Signin = () => {
         const result = response.data;
         if (result["status"] === "success") {
           toast.success(
-            result.data.first_name +
+            result.data.result.first_name +
               " " +
-              result.data.last_name +
+              result.data.result.last_name +
               ", Welcome to the application"
           );
           toast.info("Please check your Signed mail and paste token here..");
           setFlag(true);
-          setData(response.data);
+          setData(response.data.data);
         } else {
           toast.error("Invalid user name or password");
         }
@@ -84,12 +84,12 @@ const Signin = () => {
   let retry = 0;
 
   const Authentication = () => {
-    if (data.data.number === OTP) {
+    if (JSON.stringify(data.OTP) === OTP) {
       toast.success("Welcome to the Cosmo-Life cosmetice store");
 
       // get the data sent by server
       const { user_id, email, mobile_no, first_name, last_name, user_role } =
-        data.data;
+        data.result;
 
       // persist the logged in user's information for future use
       sessionStorage["user_id"] = user_id;
@@ -101,12 +101,12 @@ const Signin = () => {
       sessionStorage["loginStatus"] = 1;
 
       // navigate to home component
-      navigate("/home");
+      navigate("/address");
     } else {
       toast.error(
         `OTP is inavlid Please try again, remaining retries :: ` + ++retry
       );
-      if (retry == 2) setFlag(false);
+      if (retry === 2) setFlag(false);
     }
   };
 
@@ -123,9 +123,9 @@ const Signin = () => {
           <div
             style={{
               backgroundImage: `url(${image_bucket.SIGN_UP_PAGE_BACKGROUND_IMAGE})`,
-              backgroundRepeat: "no-repeat",
+              backgroundRepeat: "space",
               backgroundAttachment: "scroll",
-              backgroundSize: "100% 120%",
+              backgroundSize: "100% 110%",
             }}
           >
             <div className="row">
@@ -183,15 +183,13 @@ const Signin = () => {
                   </div>
 
                   <div className="mb-3">
-                    <div>
-                      No account yet?{" "}
-                      <Link to="/signup" className="btn btn-link">
-                        Signup here
-                      </Link>
-                    </div>
+                    <div>No account yet? </div>
                     <button onClick={signinUser} className="btn btn-primary">
                       Signin
-                    </button>
+                    </button>{" "}
+                    <Link to="/signup" className="btn btn-primary">
+                      Signup here
+                    </Link>
                   </div>
                 </div>
               </div>

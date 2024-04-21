@@ -13,19 +13,20 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Address from "./pages/address/address";
-import { image_bucket } from "./utils";
+import Category from "./pages/category/category";
 
 function App() {
   return (
-    <div className="container" style={{ height: "100vh", width: "100wh" }}>
+    <div className="container">
       <BrowserRouter>
         <Navbar />
         <Routes>
           <Route path="/" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/category" element={<Category />} />
           <Route path="/products" element={<Products />} />
           <Route path="/address" element={<Address />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/signup" element={<Signup />} />
           <Route path="/feedback" element={<Feedback />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>

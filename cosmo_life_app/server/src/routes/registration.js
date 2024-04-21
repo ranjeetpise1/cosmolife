@@ -1,6 +1,6 @@
 const express = require("express");
 const reg_router = express.Router();
-const db = require("../../dbconnection");
+const db = require("../../db_files/dbconnection");
 const utils = require("./utils");
 const nodemailer = require("nodemailer");
 require("dotenv").config();
@@ -61,14 +61,13 @@ reg_router.post("/signup", (req, resp, next) => {
   });
 });
 
-reg_router.post("/signin", (req, resp, next) => {
+reg_router.post("/signin", (req, resp) => {
   const { email, password } = req.body;
   const connection = db.openConnection();
   const OTP = between(1000, 9999);
   const statement = `select * from user_details where email = '${email}'`;
 
   connection.query(statement, (error, result) => {
-    console.log(result[0].password);
     if (error) {
       connection.end();
       resp.send(utils.create_result(error, result));

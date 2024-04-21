@@ -1,4 +1,4 @@
-import Card from "./components/card/card";
+import Card from "./components/card/category_card";
 
 export function show_cards(data_array) {
   data_array.forEach((element) => {

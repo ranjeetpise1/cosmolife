@@ -1,9 +1,15 @@
-import Card from "../../components/card/card";
+import React, { useState } from "react";
+import { useEffect } from "react";
+import { useLocation } from "react-router";
 import CardMaterial from "@mui/material/Card";
 import Box from "@mui/material/Box";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
+import { config } from "../../config";
+import { toast } from "react-toastify";
+import axios from "axios";
+import ProductCard from "../../components/card/product_card";
 
 const styles = {
   heading1: {
@@ -37,6 +43,10 @@ const styles = {
 };
 
 function Products() {
+  const [data, setData] = useState([]);
+  const { state } = useLocation();
+  const { category_id } = state;
+
   setInterval(function () {
     var heading1 = document.getElementById("heading1");
     if (heading1.innerHTML === "COSMOLIFE is the only solution") {
@@ -46,82 +56,30 @@ function Products() {
     }
   }, 3000);
 
-  const products = [
-    {
-      name: "sun cream",
-      description: "to serve body care from UV/sun rays",
-    },
-    {
-      name: "moon cream",
-      description: "to serve body care from UV/moon rays",
-    },
-    {
-      name: "moon cream",
-      description: "to serve body care from UV/moon rays",
-    },
-    {
-      name: "sun cream",
-      description: "to serve body care from UV/sun rays",
-    },
-    {
-      name: "moon cream",
-      description: "to serve body care from UV/moon rays",
-    },
-    {
-      name: "moon cream",
-      description: "to serve body care from UV/moon rays",
-    },
-    {
-      name: "sun cream",
-      description: "to serve body care from UV/sun rays",
-    },
-    {
-      name: "moon cream",
-      description: "to serve body care from UV/moon rays",
-    },
-    {
-      name: "moon cream",
-      description: "to serve body care from UV/moon rays",
-    },
-    {
-      name: "sun cream",
-      description: "to serve body care from UV/sun rays",
-    },
-    {
-      name: "moon cream",
-      description: "to serve body care from UV/moon rays",
-    },
-    {
-      name: "moon cream",
-      description: "to serve body care from UV/moon rays",
-    },
-    {
-      name: "sun cream",
-      description: "to serve body care from UV/sun rays",
-    },
-    {
-      name: "moon cream",
-      description: "to serve body care from UV/moon rays",
-    },
-    {
-      name: "moon cream",
-      description: "to serve body care from UV/moon rays",
-    },
-    {
-      name: "sun cream",
-      description: "to serve body care from UV/sun rays",
-    },
-    {
-      name: "moon cream",
-      description: "to serve body care from UV/moon rays",
-    },
-  ];
+  const loadBranddetails = () => {
+    axios
+      .get(config.PROD_GET_PRODUCTS.replace(":category_id", category_id))
+      .then((response) => {
+        // get the server result
+        const result = response.data;
+        if (result["status"] === "success") {
+          console.log(result);
+          setData(result.data);
+        } else {
+          toast.error("error while fetching brands");
+        }
+      });
+  };
+
+  useEffect((e) => {
+    loadBranddetails();
+  }, []);
 
   function show_cards(element) {
-    return <Card body={element} />;
+    return <ProductCard body={element} />;
   }
 
-  const cards = products.map(show_cards);
+  const cards = data.map(show_cards);
 
   return (
     <div className="row">
@@ -138,7 +96,6 @@ function Products() {
           </CardActionArea>
         </CardMaterial>
       </div>
-
       {cards}
     </div>
   );

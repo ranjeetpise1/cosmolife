@@ -66,7 +66,7 @@ const Address = () => {
         if (result["status"] === "success") {
           toast.success("Successfully signed up new user");
           // navigate to the signin page
-          navigate("/vehicleregistration");
+          navigate("/home");
         } else {
           toast.error(result["error"]);
         }
@@ -87,7 +87,6 @@ const Address = () => {
   return (
     <div style={{ color: "white" }}>
       <div
-        id="wholepage"
         style={{
           backgroundImage: `url('https://wallpaperaccess.com/full/5881879.jpg')`,
           backgroundRepeat: "no-repeat",

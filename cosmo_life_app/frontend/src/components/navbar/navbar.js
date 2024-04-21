@@ -1,5 +1,6 @@
 import React from "react";
 import "./navbar.css";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   let login = false;
@@ -43,7 +44,13 @@ function Navbar() {
               id="navbarSupportedContent"
             >
               <form className="d-flex">
-                <a href="/">Sign In</a>
+                {sessionStorage.getItem("loginStatus") !== 1 ? (
+                  <Link to="/signup" className="btn btn-primary">
+                    sign-in
+                  </Link>
+                ) : (
+                  <Link className="btn btn-danger">sign-out</Link>
+                )}
               </form>
             </div>
           )}

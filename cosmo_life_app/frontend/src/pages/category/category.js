@@ -1,16 +1,14 @@
-import React, { useState } from "react";
-import { useEffect } from "react";
-import { useNavigate } from "react-router";
-import Card from "@mui/material/Card";
+import React, { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import { Backdrop, CardActionArea } from "@mui/material";
+import { Card, CardActionArea } from "@mui/material";
 import BackDropButton from "../../components/buttons/backdrop";
-import BrandCard from "../../components/card/brand_card";
 import { config } from "../../config";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { useLocation, useNavigate } from "react-router-dom";
+import CategoryCard from "../../components/card/category_card";
 
 const styles = {
   heading1: {
@@ -28,9 +26,8 @@ const styles = {
     Display: "flex",
     fontWidth: "100%",
     fontWeight: "bolder",
-    textShadow: "5px 5px 10px #27097A",
+    textShadow: "5px 5px 10px grey",
     color: "white",
-    Backdrop: "0.9",
   },
   heading3: {
     fontFamily: "Dancing Script",
@@ -44,28 +41,34 @@ const styles = {
   },
 };
 
-function Home() {
+export function Category() {
+  const { state } = useLocation();
+  const { brand_id } = state;
+
   const navigate = useNavigate();
   const [data, setData] = useState([]);
 
   useEffect((e) => {
-    loadBranddetails();
+    loadCategoryDetails();
   }, []);
 
-  const loadBranddetails = () => {
-    axios.get(config.BRAND_GET).then((response) => {
-      // get the server result
-      const result = response.data;
-      if (result["status"] === "success") {
-        setData(result.data);
-      } else {
-        toast.error("error while fetching brands");
-      }
-    });
+  const loadCategoryDetails = () => {
+    axios
+      .get(config.CATEGORY_GET.replace(":brand_id", brand_id))
+      .then((response) => {
+        // get the server result
+        const result = response.data;
+        if (result["status"] === "success") {
+          console.log(result.data);
+          setData(result.data);
+        } else {
+          toast.error("error while fetching brands");
+        }
+      });
   };
 
   function show_cards(element) {
-    return <BrandCard body={element} />;
+    return <CategoryCard body={element} />;
   }
 
   const cards = data.map(show_cards);
@@ -78,7 +81,7 @@ function Home() {
             sx={{
               display: "flex",
               color: "#27097A",
-              backgroundImage: `url('https://yakymour.files.wordpress.com/2015/11/christiaan-dior-blush-state-of-gold-look-noel-2015-gif.gif?w=640')`,
+              backgroundImage: `url('https://www.narscosmetics.com/on/demandware.static/-/Library-Sites-NARS-Shared-Library/default/dwec2e27d5/images/career/Careers.gif')`,
               backgroundRepeat: "no-repeat",
               backgroundSize: "50vw 50vh",
               transition: "0.9",
@@ -86,39 +89,16 @@ function Home() {
             }}
           >
             <Typography component="div" variant="h5">
-              <h1 style={styles.heading2}>Home Page</h1>
+              <h1 style={styles.heading2}>Category Page</h1>
             </Typography>
           </Card>
         </div>
       </div>
       <div></div>
-      <BackDropButton />
+      {/* <BackDropButton /> */}
       <div className="row">{cards}</div>
-      <div>
-        <Card>
-          <h1
-            style={{
-              fontFamily: "Dancing Script",
-              fontSize: "3em",
-              Display: "flex",
-              fontWidth: "100%",
-              fontWeight: "bolder",
-              textShadow: "10px 10px 8px gray",
-              color: "black",
-              textAlign: "center",
-              border: "3px solid black",
-              padding: "2%",
-              margin: "3% 10% 0 10%",
-            }}
-            id="title"
-          >
-            OUR GEAND CLIENTS
-          </h1>
-          <br />
-        </Card>
-      </div>
     </div>
   );
 }
 
-export default Home;
+export default Category;
