@@ -14,6 +14,8 @@ import "react-toastify/dist/ReactToastify.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Address from "./pages/address/address";
 import Category from "./pages/category/category";
+import Cart from "./pages/cart/cart";
+import ProductDisplay from "./pages/products/product_display";
 
 function App() {
   return (
@@ -26,6 +28,8 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/category" element={<Category />} />
           <Route path="/products" element={<Products />} />
+          <Route path="/product/display_page/" element={<ProductDisplay />} />
+          <Route path="/cart" element={<Cart />} />
           <Route path="/address" element={<Address />} />
           <Route path="/feedback" element={<Feedback />} />
           <Route path="/contact" element={<Contact />} />

@@ -2,10 +2,7 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
 import Card from "@mui/material/Card";
-import Box from "@mui/material/Box";
-import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import { Backdrop, CardActionArea } from "@mui/material";
 import BackDropButton from "../../components/buttons/backdrop";
 import BrandCard from "../../components/card/brand_card";
 import { config } from "../../config";
@@ -80,8 +77,8 @@ function Home() {
               color: "#27097A",
               backgroundImage: `url('https://yakymour.files.wordpress.com/2015/11/christiaan-dior-blush-state-of-gold-look-noel-2015-gif.gif?w=640')`,
               backgroundRepeat: "no-repeat",
-              backgroundSize: "50vw 50vh",
-              transition: "0.9",
+              backgroundSize: "60vw 60vh",
+              transition: "0.2s",
               padding: "100px",
             }}
           >

@@ -83,7 +83,7 @@ export function Category() {
               color: "#27097A",
               backgroundImage: `url('https://www.narscosmetics.com/on/demandware.static/-/Library-Sites-NARS-Shared-Library/default/dwec2e27d5/images/career/Careers.gif')`,
               backgroundRepeat: "no-repeat",
-              backgroundSize: "50vw 50vh",
+              backgroundSize: "65vw 60vh",
               transition: "0.9",
               padding: "100px",
             }}

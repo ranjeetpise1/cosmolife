@@ -9,7 +9,7 @@ function Navbar() {
     <div style={{ marginTop: "50px" }}>
       <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-dark container">
         <div className="container-fluid">
-          <a className="navbar-brand" href="home">
+          <a className="navbar-brand" href="/home">
             Home
           </a>
           <a className="navbar-brand" href="/products">

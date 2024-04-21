@@ -3,6 +3,17 @@ const db = require("../../db_files/dbconnection");
 const utils = require("./utils");
 const product_route = express.Router();
 
+product_route.get("/get_products", (req, resp, next) => {
+  const connection = db.openConnection();
+
+  const statement = `select * from product_details`;
+
+  connection.query(statement, (error, result) => {
+    connection.end();
+    resp.send(utils.create_result(error, result));
+  });
+});
+
 product_route.get("/get_products/:category_id", (req, resp, next) => {
   const category_id = req.params.category_id;
   const connection = db.openConnection();

@@ -6,8 +6,9 @@ export const config = {
   USR_REG_SIGNIN: `${BASE_URL}/registration/signin`,
 
   /* Cart URL's */
-  CART_ADD_TO_CART: `${BASE_URL}/cart_service/add_to_cart`,
-  CART_REMOVE_FROM_CART: `${BASE_URL}/cart_service/remove_from_cart`,
+  CART_GET_CART_DETAILS: `${BASE_URL}/cart_service/get_cart_details/:user_id`,
+  CART_ADD_TO_CART: `${BASE_URL}/cart_service/add_to_cart/:user_id/:product_id`,
+  CART_REMOVE_FROM_CART: `${BASE_URL}/cart_service/remove_from_cart/:user_id/:product_id`,
 
   /* User Address URL's */
   USR_ADDR_GET: `${BASE_URL}/address_service/usr_get_addr/:user_id`,
@@ -28,6 +29,7 @@ export const config = {
   CATEGORY_REMOVE: `${BASE_URL}/category_service/delete_category/:category_id`,
 
   /* Product URL's */
+  PROD_GET_ALL_PRODUCTS: `${BASE_URL}/products/get_products`,
   PROD_GET_PRODUCTS: `${BASE_URL}/products/get_products/:category_id`,
   PROD_ADD_PRODUCT: `${BASE_URL}/products/add_products/:category_id`,
   PROD_REMOVE_PRODUCT: `${BASE_URL}/products/delete_products/:product_id`,
