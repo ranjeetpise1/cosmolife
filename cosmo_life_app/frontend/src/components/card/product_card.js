@@ -31,8 +31,8 @@ export default function ProductCard(props) {
         <CardMedia
           component="img"
           alt="green iguana"
-          height="140"
-          image="/static/images/cards/contemplative-reptile.jpg"
+          height="200"
+          image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJnb43MuKReMIG9fvcHJrOAupaJjzKCcEdyw&usqp=CAU"
         />
       </CardActionArea>
       <CardContent>

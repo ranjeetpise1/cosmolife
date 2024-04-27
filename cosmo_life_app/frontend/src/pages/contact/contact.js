@@ -1,4 +1,15 @@
+import { useEffect } from "react";
+import { useNavigate } from "react-router";
+
 function Contact() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (sessionStorage.getItem("loginStatus") !== "1") {
+      navigate("/");
+    }
+  }, []);
+
   return (
     <div>
       <form>

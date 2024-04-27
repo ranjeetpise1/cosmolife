@@ -74,11 +74,11 @@ const Address = () => {
     }
   };
 
-  // useEffect((e) => {
-  //   if (sessionStorage.getItem("loginStatus") != 1) {
-  //     navigate("/signin");
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (sessionStorage.getItem("loginStatus") !== "1") {
+      navigate("/");
+    }
+  }, []);
 
   const handlechange = () => {
     navigate("/home");

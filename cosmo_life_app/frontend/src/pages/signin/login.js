@@ -111,7 +111,7 @@ const Signin = () => {
   };
 
   useEffect((e) => {
-    if (sessionStorage.getItem("loginStatus") === 1) {
+    if (sessionStorage.getItem("loginStatus") === "1") {
       navigate("/home");
     }
   }, []);
@@ -126,6 +126,7 @@ const Signin = () => {
               backgroundRepeat: "space",
               backgroundAttachment: "scroll",
               backgroundSize: "100% 110%",
+              minHeight: "80vh",
             }}
           >
             <div className="row">

@@ -8,6 +8,7 @@ import BrandCard from "../../components/card/brand_card";
 import { config } from "../../config";
 import { toast } from "react-toastify";
 import axios from "axios";
+import BackToTop from "../../components/buttons/scroll_up";
 
 const styles = {
   heading1: {
@@ -69,15 +70,16 @@ function Home() {
 
   return (
     <div>
+      <BackToTop />
       <div className="row">
-        <div className="col-11" style={{ margin: "25px" }}>
+        <div className="col-12">
           <Card
             sx={{
               display: "flex",
               color: "#27097A",
               backgroundImage: `url('https://yakymour.files.wordpress.com/2015/11/christiaan-dior-blush-state-of-gold-look-noel-2015-gif.gif?w=640')`,
               backgroundRepeat: "no-repeat",
-              backgroundSize: "60vw 60vh",
+              backgroundSize: "100% 100%",
               transition: "0.2s",
               padding: "100px",
             }}
@@ -88,8 +90,7 @@ function Home() {
           </Card>
         </div>
       </div>
-      <div></div>
-      <BackDropButton />
+      <div style={{ margin: "25px" }} />
       <div className="row">{cards}</div>
       <div>
         <Card>

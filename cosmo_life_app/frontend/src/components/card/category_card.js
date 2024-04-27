@@ -11,37 +11,6 @@ import { styled } from "@mui/material/styles";
 import Collapse from "@mui/material/Collapse";
 import { useNavigate } from "react-router-dom";
 
-const styles = {
-  heading1: {
-    fontFamily: "Dancing Script",
-    fontSize: "3em",
-    Display: "flex",
-    fontWidth: "100%",
-    fontWeight: "bolder",
-    textShadow: "5px 10px 10px black",
-    color: "white",
-  },
-  heading2: {
-    fontFamily: "Dancing Script",
-    fontSize: "3em",
-    Display: "flex",
-    fontWidth: "100%",
-    fontWeight: "bolder",
-    textShadow: "5px 5px 10px gray",
-    color: "black",
-  },
-  heading3: {
-    fontFamily: "Dancing Script",
-    textAlign: "center",
-    fontSize: "3em",
-    Display: "flex",
-    fontWidth: "100%",
-    fontWeight: "bolder",
-    textShadow: "5px 5px 10px gray",
-    color: "black",
-  },
-};
-
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
   return <IconButton {...other} />;
@@ -67,13 +36,13 @@ export default function CategoryCard(props) {
       <CardActionArea
         onClick={() =>
           navigate("/products", {
-            state: { category_id: props.body.category_id },
+            state: { category_props: props.body },
           })
         }
       >
         <CardMedia
           sx={{ height: 140 }}
-          image="https://i.gifer.com/origin/98/98f463c4f765ed24d38b3640049f4f99_w200.gif"
+          image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJnb43MuKReMIG9fvcHJrOAupaJjzKCcEdyw&usqp=CAU"
           title={props.body.category_name}
         />
       </CardActionArea>

@@ -49,6 +49,9 @@ export function Category() {
   const [data, setData] = useState([]);
 
   useEffect((e) => {
+    if (sessionStorage.getItem("loginStatus") !== "1") {
+      navigate("/");
+    }
     loadCategoryDetails();
   }, []);
 

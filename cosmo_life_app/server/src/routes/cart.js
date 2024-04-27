@@ -88,7 +88,7 @@ cart_route.post("/add_to_cart/:user_id/:product_id", logStuff, (req, resp) => {
     });
   } else {
     console.log("after evrything");
-    resp.send("there is nothing in cart...");
+    resp.send("There is issue while adding to cart, try after sometime...");
   }
 });
 
@@ -152,21 +152,20 @@ cart_route.post("/remove_from_cart/:user_id/:product_id", (req, resp) => {
 cart_route.get("/get_cart_details/:user_id", (req, resp) => {
   const { user_id } = req.params;
   const connection = db.openConnection();
-
   let statement = `
-    select cd.product_id, 
-    cd.quantity,
-    cd.no_of_items,
-    cd.total_bill,
-    pd.product_name,
-    pd.product_cost,
-    pd.product_description,
-    pd.product_image
-    from cart_details cd inner join product_details pd 
-    on cd.product_id = pd.product_id inner join cart c 
-    on cd.cart_id = c.cart_id 
-    where c.user_id = ${user_id} 
-    and c.is_cart_confirmed = false`;
+  select distinct(cd.product_id), 
+  cd.quantity,
+  cd.no_of_items,
+  cd.total_bill,
+  pd.product_name,
+  pd.product_cost,
+  pd.product_description,
+  pd.product_image
+  from cart_details cd inner join product_details pd 
+  on cd.product_id = pd.product_id inner join cart c 
+  on cd.cart_id = c.cart_id 
+  where c.user_id = ${user_id}
+  and c.is_cart_confirmed = false;`;
 
   connection.query(statement, (error, result) => {
     connection.end();

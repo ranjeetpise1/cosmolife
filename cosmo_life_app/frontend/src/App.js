@@ -19,7 +19,7 @@ import ProductDisplay from "./pages/products/product_display";
 
 function App() {
   return (
-    <div className="container">
+    <div className="container" style={{ minHeight: "80vh" }}>
       <BrowserRouter>
         <Navbar />
         <Routes>

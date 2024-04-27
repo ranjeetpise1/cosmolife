@@ -89,8 +89,10 @@ reg_router.post("/signin", (req, resp) => {
 
         transporter.sendMail(mailOptions, (err, info) => {
           if (err) {
+            console.log(OTP);
             console.error(err);
           } else {
+            console.log(OTP);
             console.log(info.envelope);
             console.log(info.messageId);
           }

@@ -68,7 +68,11 @@ export default function BrandCard(props) {
   };
 
   return (
-    <Card sx={{ maxWidth: 420 }} id={props.body.brand_id}>
+    <Card
+      sx={{ maxWidth: 420, padding: "10px", margin: "5px" }}
+      id={props.body.brand_id}
+      key={props.body.brand_id}
+    >
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: "#C684FF" }} aria-label="recipe">
@@ -91,7 +95,7 @@ export default function BrandCard(props) {
         <CardMedia
           component="img"
           height="194"
-          image={props.body.brand_logo}
+          image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJnb43MuKReMIG9fvcHJrOAupaJjzKCcEdyw&usqp=CAU"
           alt={props.body.brand_name}
         />
       </CardActionArea>

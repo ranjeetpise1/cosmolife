@@ -50,9 +50,14 @@ function Products() {
 
   const loadBranddetails = () => {
     if (state !== null) {
-      const { category_id } = state;
+      const { category_props } = state;
       axios
-        .get(config.PROD_GET_PRODUCTS.replace(":category_id", category_id))
+        .get(
+          config.PROD_GET_PRODUCTS.replace(
+            ":category_id",
+            category_props.category_id
+          )
+        )
         .then((response) => {
           // get the server result
           const result = response.data;
@@ -79,15 +84,7 @@ function Products() {
 
   useEffect((e) => {
     loadBranddetails();
-    // setInterval(function () {
-    //   var heading1 = document.getElementById("heading1");
-    //   if (heading1.innerHTML === "COSMOLIFE is the only solution") {
-    //     heading1.innerHTML = "are you in trouble to find cosmetics?";
-    //   } else {
-    //     heading1.innerHTML = "COSMOLIFE is the only solution";
-    //   }
-    // }, 3000);
-  }, []);
+  });
 
   function show_cards(element) {
     return <ProductCard body={element} />;
@@ -113,7 +110,9 @@ function Products() {
       {cards}
       <div>
         <CardActions>
-          <Button size="large">Go to Cart</Button>
+          <Button size="large" href="/cart">
+            Go to Cart
+          </Button>
         </CardActions>
       </div>
     </div>
