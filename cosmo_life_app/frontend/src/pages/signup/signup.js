@@ -210,22 +210,25 @@ const Signup = () => {
                 }}
               />
             </div>
-
-            <div className="mb-3">
-              <div id="fontcolor">
-                Already have an account?{" "}
-                <Link to="/">
-                  <span id="link">Signin here</span>
-                </Link>
-              </div>
-              <div style={{ marginTop: "20px" }}>
-                <button
-                  onClick={signupUser}
-                  className="btn btn-warning"
-                  id="fontcolor"
+            <div>
+              <button
+                onClick={signupUser}
+                className="btn btn-primary btn-lg d-grid col-11 mx-auto"
+                id="fontcolor"
+              >
+                Signup
+              </button>
+            </div>
+            <div className="mb-3" style={{ marginTop: "20px" }}>
+              <div className="d-grid col-6 mx-auto">
+                <b>Already have an account?</b>
+                <dd />
+                <Link
+                  to="/"
+                  className="btn btn-outline-dark btn-sm d-grid col-12 mx-auto"
                 >
-                  Signup
-                </button>
+                  Signin here
+                </Link>
               </div>
             </div>
           </div>

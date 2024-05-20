@@ -4,6 +4,7 @@ const cart_route = express.Router();
 const utils = require("./utils");
 
 function logOriginalUrl(req, resp, next) {
+  console.log(req.body.headers["is_cart_created"]);
   if (req.body.headers["is_cart_created"] === false) {
     const connection = db.openConnection();
 
@@ -29,6 +30,7 @@ cart_route.post("/add_to_cart/:user_id/:product_id", logStuff, (req, resp) => {
   const { user_id, product_id } = req.params;
   const { add_quantity } = req.body.body;
   console.log(req.body);
+  console.log(req.params);
   if (req.body.headers["is_cart_created"] === true) {
     const connection = db.openConnection();
     let statement = `
@@ -68,7 +70,7 @@ cart_route.post("/add_to_cart/:user_id/:product_id", logStuff, (req, resp) => {
           statement = `select product_cost from product_details where product_id = '${product_id}'`;
           connection.query(statement, (error, result) => {
             if (!error) {
-              statement = `insert into cart_details(cart_id, product_id, quantity, no_of_items, total_bill) values ((select cart_id from cart where is_cart_confirmed = false), '${product_id}', '${add_quantity}', '${add_quantity}', '${
+              statement = `insert into cart_details(cart_id, product_id, quantity, no_of_items, total_bill) values ((select cart_id from cart where is_cart_confirmed = false and user_id = ${user_id}), '${product_id}', '${add_quantity}', '${add_quantity}', '${
                 result[0].product_cost * add_quantity
               }')`;
 

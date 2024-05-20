@@ -15,3 +15,17 @@ export const image_bucket = {
   GIF_ROUND_PLAY:
     "https://miro.medium.com/v2/resize:fit:800/1*O0_snHbvjKtonTpV-I_Wlw.gif",
 };
+
+export function isUserLoggedIn() {
+  if (sessionStorage.getItem("loginStatus") !== "1") {
+    return true;
+  }
+  return false;
+}
+
+export function isCartCreated() {
+  if (sessionStorage.getItem("isCartCreated") === "1") {
+    return true;
+  }
+  return false;
+}

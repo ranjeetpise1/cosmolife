@@ -8,6 +8,7 @@ import { config } from "../../config";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./address.css";
 import { Form, Col, Row } from "react-bootstrap";
+import { isUserLoggedIn } from "../../utils";
 
 const Address = () => {
   const [country, setCountry] = useState("");
@@ -75,7 +76,7 @@ const Address = () => {
   };
 
   useEffect(() => {
-    if (sessionStorage.getItem("loginStatus") !== "1") {
+    if (isUserLoggedIn()) {
       navigate("/");
     }
   }, []);

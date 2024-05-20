@@ -15,7 +15,7 @@ export default function ProductCard(props) {
   /* props => product_id, category_id, product_name, product_description, product_image, product_cost, created_time_stamp, last_updated_time_stamp */
   const navigate = useNavigate();
   return (
-    <Card sx={{ maxWidth: 370 }}>
+    <Card sx={{ maxWidth: 400, margin: 1.5 }}>
       <CardHeader>
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">

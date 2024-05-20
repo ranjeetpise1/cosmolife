@@ -1,11 +1,12 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
+import { isUserLoggedIn } from "../../utils";
 
 function Contact() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (sessionStorage.getItem("loginStatus") !== "1") {
+    if (isUserLoggedIn()) {
       navigate("/");
     }
   }, []);

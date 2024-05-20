@@ -18,6 +18,7 @@ import AddIcon from "@mui/icons-material/Add";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { config } from "../../config";
+import { isCartCreated } from "../../utils";
 
 export default function ProductDisplay() {
   const [data, setData] = useState();
@@ -98,7 +99,7 @@ export default function ProductDisplay() {
           {
             headers: {
               "Content-Type": "application/json",
-              is_cart_created: true,
+              is_cart_created: isCartCreated(),
             },
             body,
           }
@@ -108,6 +109,9 @@ export default function ProductDisplay() {
           const result = response.data;
           if (result["status"] === "success") {
             toast.success("Product is added to the cart...");
+            if (!isCartCreated()) {
+              sessionStorage["isCartCreated"] = 1;
+            }
             navigate(-1);
           } else {
             console.log(result);

@@ -35,7 +35,7 @@ reg_router.post("/signup", (req, resp, next) => {
         from: process.env.EMAIL_USER,
         to: `${email}`,
         subject: "Successfully Signed up to Cosmolife e-commerce services",
-        text: `hello ${first_name},
+        html: `hello <h1>${first_name}</h1>,
             You have successfully Signed uyp to our application.
             Here you have beautiful experienced user friendly UI to work with. 
             Just enjoy the servises which you want,
@@ -77,7 +77,7 @@ reg_router.post("/signin", (req, resp) => {
           from: process.env.EMAIL_USER,
           to: `${email}`,
           subject: "Successfully Signed in to Cosmolife e-commerce services",
-          text: `hello ${result[0].first_name},
+          html: `hello ${result[0].first_name},
                 You have successfully Signed in to our application.
                 Here you have beautiful experienced user friendly UI to work with. 
                 Just enjoy the servises which you want,

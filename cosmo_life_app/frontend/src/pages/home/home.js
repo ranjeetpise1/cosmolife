@@ -9,6 +9,7 @@ import { config } from "../../config";
 import { toast } from "react-toastify";
 import axios from "axios";
 import BackToTop from "../../components/buttons/scroll_up";
+import { isUserLoggedIn } from "../../utils";
 
 const styles = {
   heading1: {
@@ -47,7 +48,11 @@ function Home() {
   const [data, setData] = useState([]);
 
   useEffect((e) => {
-    loadBranddetails();
+    if (isUserLoggedIn()) {
+      navigate("/");
+    } else {
+      loadBranddetails();
+    }
   }, []);
 
   const loadBranddetails = () => {
@@ -77,11 +82,11 @@ function Home() {
             sx={{
               display: "flex",
               color: "#27097A",
-              backgroundImage: `url('https://yakymour.files.wordpress.com/2015/11/christiaan-dior-blush-state-of-gold-look-noel-2015-gif.gif?w=640')`,
+              backgroundImage: `url('https://yakymour.files.wordpress.com/2015/11/christiaan-dior-blush-state-of-gold-look-noel-2015-gif.gif')`,
               backgroundRepeat: "no-repeat",
               backgroundSize: "100% 100%",
               transition: "0.2s",
-              padding: "100px",
+              padding: "180px",
             }}
           >
             <Typography component="div" variant="h5">

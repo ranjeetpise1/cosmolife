@@ -43,7 +43,7 @@ const Signin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [flag, setFlag] = useState(false);
-  const [OTP, setOTP] = useState(0);
+  const [OTP, setOTP] = useState("");
 
   const navigate = useNavigate();
 
@@ -157,6 +157,7 @@ const Signin = () => {
                     >
                       Email address
                     </label>
+                    <dd />
                     <input
                       onChange={(e) => {
                         setEmail(e.target.value);
@@ -174,6 +175,7 @@ const Signin = () => {
                     >
                       Password
                     </label>
+                    <dd />
                     <input
                       onChange={(e) => {
                         setPassword(e.target.value);
@@ -183,14 +185,26 @@ const Signin = () => {
                     />
                   </div>
 
-                  <div className="mb-3">
-                    <div>No account yet? </div>
-                    <button onClick={signinUser} className="btn btn-primary">
+                  <div className="mb-3 d-grid">
+                    <button
+                      onClick={signinUser}
+                      className="btn btn-primary btn-sm col-6 mx-auto"
+                    >
                       Signin
-                    </button>{" "}
-                    <Link to="/signup" className="btn btn-primary">
-                      Signup here
-                    </Link>
+                    </button>
+                    <dd />
+                    <div className="d-grid col-4 mx-auto">
+                      <div>
+                        <b>No account yet?</b>
+                      </div>
+                      <dd />
+                      <Link
+                        to="/signup"
+                        className="btn btn-outline-dark btn-sm"
+                      >
+                        Signup here
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -239,26 +253,26 @@ const Signin = () => {
                     </label>
                   </div>
                   <Form.Group as={Col}>
-                    <Form.Label style={{ color: "#fff" }}>
-                      <b>Enter OTP here</b>
-                    </Form.Label>
                     <Form.Control
-                      type="number"
+                      type="text"
+                      placeholder="Enter OTP here"
                       onChange={(e) => setOTP(e.target.value)}
                     />
                   </Form.Group>
-                  <div />
-                  <div className="mb-3">
-                    <div style={{ color: "#fff" }}>No account yet? </div>
+                  <dd />
+                  <div className="mb-3 d-grid">
                     <button
                       onClick={() => Authentication()}
-                      className="btn btn-primary"
+                      className="btn btn-primary btn-sm d-grid col-6 mx-auto"
                     >
-                      Validate_OTP
-                    </button>{" "}
-                    <Link to="/signup" className="btn btn-primary">
-                      Signup here
-                    </Link>
+                      Submit
+                    </button>
+                    <dd />
+                    <div className="d-grid col-4 mx-auto">
+                      <Link to="/signup" class="btn btn-warning btn-sm mx-auto">
+                        Signup here
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </div>

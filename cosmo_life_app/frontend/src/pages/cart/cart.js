@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import CartCard from "../../components/card/cart_card";
 import { Card, Typography } from "@mui/material";
 import { useNavigate } from "react-router";
+import { isUserLoggedIn } from "../../utils";
 
 const styles = {
   heading1: {
@@ -74,10 +75,11 @@ export default function Cart() {
   }
 
   useEffect(() => {
-    if (sessionStorage.getItem("loginStatus") !== "1") {
+    if (isUserLoggedIn()) {
       navigate("/");
+    } else {
+      getCartDetails();
     }
-    getCartDetails();
   }, []);
 
   return (

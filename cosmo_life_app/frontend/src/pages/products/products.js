@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
-import { useLocation } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import CardMaterial from "@mui/material/Card";
 import Box from "@mui/material/Box";
 import CardContent from "@mui/material/CardContent";
@@ -11,7 +11,7 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import ProductCard from "../../components/card/product_card";
 import { Button } from "react-bootstrap";
-
+import { isUserLoggedIn } from "../../utils";
 const styles = {
   heading1: {
     fontFamily: "Dancing Script",
@@ -47,6 +47,7 @@ function Products() {
   const [data, setData] = useState([]);
   const { state } = useLocation();
   const cards = data.map(show_cards);
+  const navigate = useNavigate();
 
   const loadBranddetails = () => {
     if (state !== null) {
@@ -83,7 +84,11 @@ function Products() {
   };
 
   useEffect((e) => {
-    loadBranddetails();
+    if (isUserLoggedIn()) {
+      navigate("/");
+    } else {
+      loadBranddetails();
+    }
   });
 
   function show_cards(element) {

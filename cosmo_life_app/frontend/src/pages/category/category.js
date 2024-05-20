@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import CategoryCard from "../../components/card/category_card";
+import { isUserLoggedIn } from "../../utils";
 
 const styles = {
   heading1: {
@@ -49,10 +50,11 @@ export function Category() {
   const [data, setData] = useState([]);
 
   useEffect((e) => {
-    if (sessionStorage.getItem("loginStatus") !== "1") {
+    if (isUserLoggedIn()) {
       navigate("/");
+    } else {
+      loadCategoryDetails();
     }
-    loadCategoryDetails();
   }, []);
 
   const loadCategoryDetails = () => {

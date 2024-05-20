@@ -9,14 +9,19 @@
   "author": "Ranjeet Pise",
   "license": "ISC",
   "dependencies": {
+    "bootstrap": "^5.3.3",
     "cors": "^2.8.5",
     "crypto": "^1.0.1",
     "crypto-js": "^4.2.0",
     "dotenv": "^16.4.5",
     "express": "^4.19.1",
+    "express-handlebars": "^7.1.2",
+    "hogan": "^1.0.2",
     "mysql": "^2.18.1",
     "mysql2-promise": "^0.1.4",
     "nodemailer": "^6.9.13",
-    "nodemon": "^3.1.0"
+    "nodemailer-express-handlebars": "^6.1.2",
+    "nodemon": "^3.1.0",
+    "sendgrid": "^5.2.3"
   }
 }
